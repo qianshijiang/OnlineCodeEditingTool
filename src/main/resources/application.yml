@@ -1,0 +1,26 @@
+debug: false
+server:
+  port: 8088
+  servlet:
+      context-path: /OnlineCodeEditingTool
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+    static-path-pattern: /static/**
+  datasource:
+    #driver-class-name: com.mysql.jdbc.Driver
+    #url: jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
+    username: pbms
+    password: pbms
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cn.OnlineCodeEditingTool.domain
+
+  #log4j2
+logging:
+  config: classpath:log4j2-spring.xml

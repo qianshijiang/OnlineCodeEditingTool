@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.wordonlineediting.dao.WorduserDao">
+  
+   <!-- 通过用户Id查询 -->
+   <select id="findById" resultType="com.cn.wordonlineediting.pojo.Worduser">
+      select t.* from worduser t where t.id = #{Id}
+   </select>
+   
+   <!-- 通过登录名查询(支持邮箱,电话登录) -->
+   <select id="findByName" resultType="com.cn.wordonlineediting.pojo.Worduser">
+      select t.* from worduser t where t.name = #{name} or t.email = #{name} or t.telephone = #{name}
+   </select>
+   
+   <!-- 查询所有用户数据 -->
+   <select id="findList" resultType="com.cn.wordonlineediting.pojo.Worduser">
+      select t.* from worduser t where 1=1
+      <if test="id != null and id != ''">
+         and t.id = #{id}
+      </if>
+      <if test="name != null and name != ''">
+         and t.name = #{name}
+      </if>
+      <if test="password != null and password != ''">
+         and t.password = #{password}
+      </if>
+      <if test="createtime != null">
+         and t.createtime = #{createtime}
+      </if>
+      <if test="status != null and status != ''">
+         and t.status = #{status}
+      </if>
+      <if test="telephone != null and telephone != ''">
+         and t.telephone = #{telephone}
+      </if>
+      <if test="email != null and email != ''">
+         and t.email = #{email}
+      </if> 
+      <if test="address != null and address != ''">
+         and t.address = #{address}
+      </if>
+      <if test="describe != null and describe != ''">
+         and t.describe = #{describe}
+      </if>
+      <if test="editcontent != null and editcontent != ''">
+         and t.editcontent = #{editcontent}
+      </if>
+   </select>
+   
+   <!-- 分页查询用户数据 -->
+   <select id="findListByPage" resultType="com.cn.wordonlineediting.pojo.Worduser">
+       select * from (
+	       select p.*,rownum r from(
+		       select t.* from worduser t where 1=1
+		       <if test="id != null and id != ''">
+		          and t.id = #{id}
+		       </if>
+		       <if test="name != null and name != ''">
+		          and t.name = #{name}
+		       </if>
+		       <if test="password != null and password != ''">
+		          and t.password = #{password}
+		       </if>
+		       <if test="createtime != null">
+		          and t.createtime = #{createtime}
+		       </if>
+		       <if test="status != null and status != ''">
+		          and t.status = #{status}
+		       </if>
+		       <if test="telephone != null and telephone != ''">
+		          and t.telephone = #{telephone}
+		       </if>
+		       <if test="email != null and email != ''">
+		          and t.email = #{email}
+		       </if> 
+		       <if test="address != null and address != ''">
+		          and t.address = #{address}
+		       </if>
+		       <if test="describe != null and describe != ''">
+		          and t.describe = #{describe}
+		       </if>
+		       <if test="editcontent != null and editcontent != ''">
+		          and t.editcontent = #{editcontent}
+		       </if>
+		       order by t.id
+	         ) p ) where r between #{page.beginNo} and #{page.endNo}
+   </select>
+   
+   <!-- 单条插入数据 -->
+   <insert id="insert" parameterType="com.cn.wordonlineediting.pojo.Worduser">
+       insert into worduser(
+         ID,
+         NAME,
+         PASSWORD,
+         CREATETIME,
+         STATUS,
+         TELEPHONE,
+         EMAIL,
+         ADDRESS,
+         DESCRIBE,
+         EDITCONTENT
+       )(
+         select 
+         <choose>
+            <when test="id != null and id != ''">
+             #{id}
+            </when>
+            <otherwise>
+              ''
+            </otherwise>
+         </choose>
+         ,
+         <choose>
+            <when test="name != null and name != ''">
+             #{name}
+            </when>
+            <otherwise>
+              ''
+            </otherwise>
+           
+         </choose>
+           ,    
+         <choose>
+            <when test="password != null and password != ''">
+             #{password}
+            </when>
+            <otherwise>
+             ''
+            </otherwise>
+         </choose>
+          ,
+         <choose>
+           <when test="createtime != null">
+             #{createtime}
+           </when>
+           <otherwise>
+             ''
+           </otherwise>
+         </choose>
+         ,
+         <choose>
+           <when test="status != null and status !=''">
+            #{status}
+           </when>
+           <otherwise>
+            ''
+           </otherwise>
+         </choose>
+         ,
+         <choose>
+           <when test="telephone != null and telephone != ''">
+             #{telephone}
+           </when>
+           <otherwise>
+             ''
+           </otherwise>
+         </choose>
+         ,
+         <choose>
+           <when test="email != null and email != ''">
+             #{email}
+           </when>
+           <otherwise>
+             ''
+           </otherwise>
+         </choose>
+         ,
+         <choose>
+           <when test="address != null and address != ''">
+             #{address}
+           </when>
+           <otherwise>
+             ''
+           </otherwise>
+         </choose>
+         ,
+         <choose>
+           <when test="describe != null and describe != ''">
+             #{describe}
+           </when>
+           <otherwise>
+             ''
+           </otherwise>
+         </choose>
+         ,
+         <choose>
+            <when test="editcontent != null and editcontent != ''">
+              #{editcontent}
+            </when>
+            <otherwise>
+              ''
+            </otherwise>
+         </choose>
+         from dual
+       )
+   </insert>
+   
+   <!-- 批量插入 -->
+   <insert id="insertBash" parameterType="com.cn.wordonlineediting.pojo.Worduser">
+      insert into worduser(
+         ID,
+         NAME,
+         PASSWORD,
+         CREATETIME,
+         STATUS,
+         TELEPHONE,
+         EMAIL,
+         ADDRESS,
+         DESCRIBE,
+         EDITCONTENT
+       )
+       <foreach collection="userList" item="item" index="index" separator="union all" open="(" close=")">
+         select 
+         <choose>
+            <when test="item.id != null and item.id != ''">
+             #{item.id}
+            </when>
+            <otherwise>
+              ''
+            </otherwise>
+         </choose>
+         ,
+         <choose>
+            <when test="item.name != null and item.name != ''">
+             #{item.name}
+            </when>
+            <otherwise>
+              ''
+            </otherwise>
+           
+         </choose>
+           ,    
+         <choose>
+            <when test="item.password != null and item.password != ''">
+             #{item.password}
+            </when>
+            <otherwise>
+             ''
+            </otherwise>
+         </choose>
+          ,
+         <choose>
+           <when test="item.createtime != null">
+             #{item.createtime}
+           </when>
+           <otherwise>
+             ''
+           </otherwise>
+         </choose>
+         ,
+         <choose>
+           <when test="item.status != null and item.status !=''">
+            #{item.status}
+           </when>
+           <otherwise>
+            ''
+           </otherwise>
+         </choose>
+         ,
+         <choose>
+           <when test="item.telephone != null and item.telephone != ''">
+             #{item.telephone}
+           </when>
+           <otherwise>
+             ''
+           </otherwise>
+         </choose>
+         ,
+         <choose>
+           <when test="item.email != null and item.email != ''">
+             #{item.email}
+           </when>
+           <otherwise>
+             ''
+           </otherwise>
+         </choose>
+         ,
+         <choose>
+           <when test="item.address != null and item.address != ''">
+             #{item.address}
+           </when>
+           <otherwise>
+             ''
+           </otherwise>
+         </choose>
+         ,
+         <choose>
+           <when test="item.describe != null and item.describe != ''">
+             #{item.describe}
+           </when>
+           <otherwise>
+             ''
+           </otherwise>
+         </choose>
+         ,
+         <choose>
+            <when test="item.editcontent != null and item.editcontent != ''">
+              #{item.editcontent}
+            </when>
+            <otherwise>
+              ''
+            </otherwise>
+         </choose>
+         from dual
+     </foreach>
+   </insert>
+   
+   <!-- 真实删除 -->
+   <delete id="deleteById" parameterType="java.lang.String">
+      delete from worduser t where t.id = #{Id}
+   </delete>
+   
+   <!-- 物理删除 -->
+   <update id="deleteByStatus" parameterType="com.cn.wordonlineediting.pojo.Worduser">
+        update worduser set  
+           <if test="id != null and id != ''">
+	          ID = #{id},
+	       </if>
+	       <if test="name != null and name != ''">
+	          NAME = #{name},
+	       </if>
+	       <if test="password != null and password != ''">
+	          PASSWORD = #{password},
+	       </if>
+	       <if test="createtime != null">
+	          CREATETIME = #{createtime},
+	       </if>
+	       <if test="status != null and status != ''">
+	          STATUS = #{status},
+	       </if>
+	       <if test="telephone != null and telephone != ''">
+	          TELEPHONE = #{telephone},
+	       </if>
+	       <if test="email != null and email != ''">
+	          EMAIL = #{email},
+	       </if> 
+	       <if test="address != null and address != ''">
+	          ADDRESS = #{address},
+	       </if>
+	       <if test="describe != null and describe != ''">
+	          DESCRIBE = #{describe},
+	       </if>
+	       <if test="editcontent != null and editcontent != ''">
+	          EDITCONTENT = #{editcontent}
+	       </if>
+	       where ID = #{id}
+   </update>
+   
+   <!-- 单条修改用户数据 -->
+   <update id="update" parameterType="com.cn.wordonlineediting.pojo.Worduser">
+     update worduser set 
+       <if test="name != null and name != ''">
+          NAME = #{name},
+       </if>
+       <if test="password != null and password != ''">
+          PASSWORD = #{password},
+       </if>
+       <if test="createtime != null">
+          CREATETIME = #{createtime},
+       </if>
+       <if test="status != null and status != ''">
+          STATUS = #{status},
+       </if>
+       <if test="telephone != null and telephone != ''">
+          TELEPHONE = #{telephone},
+       </if>
+       <if test="email != null and email != ''">
+          EMAIL = #{email},
+       </if> 
+       <if test="address != null and address != ''">
+          ADDRESS = #{address}
+       </if>
+       <if test="describe != null and describe != ''">
+          DESCRIBE = #{describe},
+       </if>
+       <if test="editcontent != null and editcontent != ''">
+          EDITCONTENT = #{editcontent},
+       </if>
+       <if test="id != null and id != ''">
+          ID = #{id}
+       </if>
+       where ID = #{id}
+   </update>
+   
+   <!-- 批量修改数据 -->
+   <update id="updateBash" parameterType="java.util.List">
+      <foreach collection="userList" item="item" index="index" open="begin" close="end;">
+         update worduser set 
+       <if test="item.name != null and item.name != ''">
+          NAME = #{item.name},
+       </if>
+       <if test="item.password != null and item.password != ''">
+          PASSWORD = #{item.password},
+       </if>
+       <if test="item.createtime != null">
+          CREATETIME = #{item.createtime},
+       </if>
+       <if test="item.status != null and item.status != ''">
+          STATUS = #{item.status},
+       </if>
+       <if test="item.telephone != null and item.telephone != ''">
+          TELEPHONE = #{item.telephone},
+       </if>
+       <if test="item.email != null and item.email != ''">
+          EMAIL = #{item.email},
+       </if> 
+       <if test="item.address != null and item.address != ''">
+          ADDRESS = #{item.address},
+       </if>
+       <if test="item.describe != null and item.describe != ''">
+          DESCRIBE = #{item.describe},
+       </if>
+       <if test="item.editcontent != null and item.editcontent != ''">
+          EDITCONTENT = #{item.editcontent},
+       </if>
+       <if test="item.id != null and item.id != ''">
+          ID = #{item.id}
+       </if>
+       where ID = #{item.id}
+       ;
+      </foreach>
+   </update>
+</mapper>
