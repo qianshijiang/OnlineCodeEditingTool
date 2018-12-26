@@ -1,17 +1,17 @@
 debug: true
 server:
-  port: 8888
-  servlet:
-      context-path: /OnlineCodeEditingTool
+  port: 8088
+  #servlet:
+      #context-path: /OnlineCodeEditingTool
 spring:
        #profiles: dev
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
-     static-path-pattern: /**
-     resources:
-          static-locations: classpath:/META-INF/resources/
+   #mvc:
+      #view:
+         #prefix: /WEB-INF/jsp/
+         #suffix: .jsp
+    #static-path-pattern: /**
+    #resources:
+             #static-locations: classpath:/META-INF/resources/
     datasource:
             name: mysql
             # 如果存在多个数据源，监控的时候可以通过名字来区分开来

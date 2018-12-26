@@ -1,8 +1,8 @@
 debug: true
 server:
        port: 8088
-servlet:
-        context-path: /OnlineInterfaceDocument
+#servlet:
+        #context-path: /OnlineInterfaceDocument
 spring:
        profiles:
                 active: dev
