@@ -4,7 +4,7 @@ server:
   #servlet:
       #context-path: /OnlineCodeEditingTool
 spring:
-       profiles: dev
+       profiles: online
     mvc:
       view:
          prefix: /WEB-INF/jsp/
@@ -14,86 +14,86 @@ spring:
              static-locations: classpath:/META-INF/resources/
     datasource:
             name: mysql
-            # å¦‚æœå­˜åœ¨å¤šä¸ªæ•°æ®æºï¼Œç›‘æ§çš„æ—¶å€™å¯ä»¥é€šè¿‡åå­—æ¥åŒºåˆ†å¼€æ¥
-            # è¿æ¥æ•°æ®åº“çš„url
+            # Èç¹û´æÔÚ¶à¸öÊı¾İÔ´£¬¼à¿ØµÄÊ±ºò¿ÉÒÔÍ¨¹ıÃû×ÖÀ´Çø·Ö¿ªÀ´
+            # Á¬½ÓÊı¾İ¿âµÄurl
             url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
             #url: jdbc:mysql://132.232.240.177:3306/qrcode?autoReconnect=true&failOverReadOnly=false&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
             #url: jdbc:mysql://129.28.109.71:3306/qrcode?autoReconnect=true&failOverReadOnly=false&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-            # è¿æ¥æ•°æ®åº“çš„è´¦å·
+            # Á¬½ÓÊı¾İ¿âµÄÕËºÅ
             username: pbms
-            #  è¿æ¥æ•°æ®åº“çš„å¯†ç 
+            #  Á¬½ÓÊı¾İ¿âµÄÃÜÂë
             #yn_odr520!
             password: pbms
-            #Oracleé©±åŠ¨
+            #OracleÇı¶¯
             driver-class-name: oracle.jdbc.OracleDriver
-            #mysqlé©±åŠ¨
+            #mysqlÇı¶¯
             #driver-class-name: com.mysql.jdbc.Driver
-            # ä½¿ç”¨druidæ•°æ®æº
+            # Ê¹ÓÃdruidÊı¾İÔ´
             type: com.alibaba.druid.pool.DruidDataSource
-            # åˆå§‹åŒ–æ—¶å»ºç«‹ç‰©ç†è¿æ¥çš„ä¸ªæ•°ã€‚åˆå§‹åŒ–å‘ç”Ÿåœ¨æ˜¾ç¤ºè°ƒç”¨initæ–¹æ³•ï¼Œæˆ–è€…ç¬¬ä¸€æ¬¡getConnectionæ—¶
+            # ³õÊ¼»¯Ê±½¨Á¢ÎïÀíÁ¬½ÓµÄ¸öÊı¡£³õÊ¼»¯·¢ÉúÔÚÏÔÊ¾µ÷ÓÃinit·½·¨£¬»òÕßµÚÒ»´ÎgetConnectionÊ±
             initialSize: 1
-            # æ‰©å±•æ’ä»¶
-            # ç›‘æ§ç»Ÿè®¡ç”¨çš„filter:stat æ—¥å¿—ç”¨çš„filter:log4j é˜²å¾¡sqlæ³¨å…¥çš„filter:wall
+            # À©Õ¹²å¼ş
+            # ¼à¿ØÍ³¼ÆÓÃµÄfilter:stat ÈÕÖ¾ÓÃµÄfilter:log4j ·ÀÓùsql×¢ÈëµÄfilter:wall
             filters: stat
-            # æœ€å¤§è¿æ¥æ± æ•°é‡
+            # ×î´óÁ¬½Ó³ØÊıÁ¿
             maxActive: 20
-            # è·å–è¿æ¥æ—¶æœ€å¤§ç­‰å¾…æ—¶é—´ï¼Œå•ä½æ¯«ç§’
+            # »ñÈ¡Á¬½ÓÊ±×î´óµÈ´ıÊ±¼ä£¬µ¥Î»ºÁÃë
             maxWait: 60000
-            # æœ€å°è¿æ¥æ± æ•°é‡
+            # ×îĞ¡Á¬½Ó³ØÊıÁ¿
             minIdle: 1
             timeBetweenEvictionRunsMillis: 60000
-            # è¿æ¥ä¿æŒç©ºé—²è€Œä¸è¢«é©±é€çš„æœ€é•¿æ—¶é—´
+            # Á¬½Ó±£³Ö¿ÕÏĞ¶ø²»±»ÇıÖğµÄ×î³¤Ê±¼ä
             minEvictableIdleTimeMillis: 300000
-            # ç”¨æ¥æ£€æµ‹è¿æ¥æ˜¯å¦æœ‰æ•ˆçš„sqlï¼Œè¦æ±‚æ˜¯ä¸€ä¸ªæŸ¥è¯¢è¯­å¥
-            # å¦‚æœvalidationQueryä¸ºnullï¼ŒtestOnBorrowã€testOnReturnã€testWhileIdleéƒ½ä¸ä¼šå…¶ä½œç”¨
+            # ÓÃÀ´¼ì²âÁ¬½ÓÊÇ·ñÓĞĞ§µÄsql£¬ÒªÇóÊÇÒ»¸ö²éÑ¯Óï¾ä
+            # Èç¹ûvalidationQueryÎªnull£¬testOnBorrow¡¢testOnReturn¡¢testWhileIdle¶¼²»»áÆä×÷ÓÃ
             validationQuery: select count(1) from 'table'
-            # ç”³è¯·è¿æ¥çš„æ—¶å€™æ£€æµ‹ï¼Œå¦‚æœç©ºé—²æ—¶é—´å¤§äºtimeBetweenEvictionRunsMillisï¼Œæ‰§è¡ŒvalidationQueryæ£€æµ‹è¿æ¥æ˜¯å¦æœ‰æ•ˆ
+            # ÉêÇëÁ¬½ÓµÄÊ±ºò¼ì²â£¬Èç¹û¿ÕÏĞÊ±¼ä´óÓÚtimeBetweenEvictionRunsMillis£¬Ö´ĞĞvalidationQuery¼ì²âÁ¬½ÓÊÇ·ñÓĞĞ§
             testWhileIdle: true
-            # ç”³è¯·è¿æ¥æ—¶æ‰§è¡ŒvalidationQueryæ£€æµ‹è¿æ¥æ˜¯å¦æœ‰æ•ˆï¼Œåšäº†è¿™ä¸ªé…ç½®ä¼šé™ä½æ€§èƒ½
+            # ÉêÇëÁ¬½ÓÊ±Ö´ĞĞvalidationQuery¼ì²âÁ¬½ÓÊÇ·ñÓĞĞ§£¬×öÁËÕâ¸öÅäÖÃ»á½µµÍĞÔÄÜ
             testOnBorrow: false
-            # å½’è¿˜è¿æ¥æ—¶æ‰§è¡ŒvalidationQueryæ£€æµ‹è¿æ¥æ˜¯å¦æœ‰æ•ˆï¼Œåšäº†è¿™ä¸ªé…ç½®ä¼šé™ä½æ€§èƒ½
+            # ¹é»¹Á¬½ÓÊ±Ö´ĞĞvalidationQuery¼ì²âÁ¬½ÓÊÇ·ñÓĞĞ§£¬×öÁËÕâ¸öÅäÖÃ»á½µµÍĞÔÄÜ
             testOnReturn: false
-            # æ˜¯å¦ç¼“å­˜preparedStatementï¼Œå³PSCache
+            # ÊÇ·ñ»º´æpreparedStatement£¬¼´PSCache
             poolPreparedStatements: false
-            # è¦å¯ç”¨PSCacheï¼Œå¿…é¡»é…ç½®å¤§äº0ï¼Œå½“å¤§äº0æ—¶ï¼ŒpoolPreparedStatementsè‡ªåŠ¨è§¦å‘ä¿®æ”¹ä¸ºtrue
+            # ÒªÆôÓÃPSCache£¬±ØĞëÅäÖÃ´óÓÚ0£¬µ±´óÓÚ0Ê±£¬poolPreparedStatements×Ô¶¯´¥·¢ĞŞ¸ÄÎªtrue
             maxOpenPreparedStatements: -1
             connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
             maxPoolPreparedStatementPerConnectionSize: 20
 
 mybatis:
-  # mapper.xmlåŒ…åœ°å€
+  # mapper.xml°üµØÖ·
   mapper-locations: classpath:mapper/*.xml
-  # pojoç”ŸæˆåŒ…åœ°å€
+  # pojoÉú³É°üµØÖ·
   type-aliases-package: com.cn.wordonlineediting.entity
 
 #log4j2
 logging:
   config: classpath:log4j2-spring.xml
-  # æ‰“å°sql
+  # ´òÓ¡sql
   level:
        com.cn.wordonlineediting.dao: debug
 
-  # pagehelperåˆ†é¡µæ’ä»¶
+  # pagehelper·ÖÒ³²å¼ş
 pagehelper:
-      # æ•°æ®åº“çš„æ–¹è¨€
+      # Êı¾İ¿âµÄ·½ÑÔ
       helperDialect: mysql
-      # å¯ç”¨åˆç†åŒ–ï¼Œå¦‚æœpageNum < 1ä¼šæŸ¥è¯¢ç¬¬ä¸€é¡µï¼Œå¦‚æœpageNum > pagesä¼šæŸ¥è¯¢æœ€åä¸€é¡µ
+      # ÆôÓÃºÏÀí»¯£¬Èç¹ûpageNum < 1»á²éÑ¯µÚÒ»Ò³£¬Èç¹ûpageNum > pages»á²éÑ¯×îºóÒ»Ò³
       reasonable: true
       offsetAsPageNum: true
       rowBoundsWithCount: true
 
 
-#åº”ç”¨é…ç½®
+#Ó¦ÓÃÅäÖÃ
 resources:
-    # logæ–‡ä»¶å†™å…¥åœ°å€
+    # logÎÄ¼şĞ´ÈëµØÖ·
     logdir: log/
-    # åº”ç”¨åç§°
+    # Ó¦ÓÃÃû³Æ
     appname: spring-boot-example
-    # æ—¥å¿—æ‰“å°çš„åŸºç¡€æ‰«æåŒ…
+    # ÈÕÖ¾´òÓ¡µÄ»ù´¡É¨Ãè°ü
     basepackage: com.cn.wordonlineediting
-#æ·»åŠ Swaggeré…ç½®
+#Ìí¼ÓSwaggerÅäÖÃ
 
-#å¯¹swagger-uiè¿›è¡Œé…ç½®
+#¶Ôswagger-ui½øĞĞÅäÖÃ
 #pringfox:
   #documentation:
     #swagger:

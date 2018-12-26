@@ -6,7 +6,7 @@
 	<groupId>com.cn</groupId>
 	<artifactId>OnlineCodeEditingTool</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>OnlineCodeEditingTool</name>
 	<description>OnlineCodeEditingTool project for Spring Boot</description>
@@ -27,11 +27,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
 		<!-- exclude掉spring-boot的默认log配置 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -42,6 +37,41 @@
 					<artifactId>spring-boot-starter-logging</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<!--spring boot 的依赖 START-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- 移除嵌入式tomcat插件 -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!--本地启动需要tomcat-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- 引入log4j2依赖 -->
@@ -297,15 +327,37 @@
 
 	<!--激活对应的配置文件-->
 	<profiles>
-		<profile>
-			<id>dev</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<spring.profiles.active>dev</spring.profiles.active>
-			</properties>
-		</profile>
+		<!--开发环境-->
+			<profile>
+				<id>dev</id>
+				<properties>
+					<activatedProperties>dev</activatedProperties>
+					<logPath>/log/dev</logPath>
+					<logLevelConsole>debug</logLevelConsole>
+					<logLevelAction>DEBUG</logLevelAction>
+					<logLevelRoot>debug</logLevelRoot>
+					<projectName>OnlineCodeEditingTool</projectName>
+					<logPrefix>OnlineCodeEditingTool</logPrefix>
+				</properties>
+				<activation>
+					<activeByDefault>true</activeByDefault>
+				</activation>
+			</profile>
+				<!--生产环境 -->
+				<profile>
+					<id>online</id>
+					<properties>
+						<activatedProperties>online</activatedProperties>
+						<logPath>/log/online</logPath>
+						<logLevelConsole>debug</logLevelConsole>
+						<logLevelAction>DEBUG</logLevelAction>
+						<logLevelRoot>debug</logLevelRoot>
+						<projectName>OnlineCodeEditingTool</projectName>
+						<logPrefix>OnlineCodeEditingTool</logPrefix>
+					</properties>
+					<activation>
+						<activeByDefault>false</activeByDefault>
+					</activation>
+			</profile>
 	</profiles>
-
 </project>
