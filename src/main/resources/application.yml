@@ -6,31 +6,3 @@ servlet:
 spring:
        profiles:
                 active: dev
-
-debug: true
-#项目端口
-server.port=8088
-#项目路径
-server.servlet.context-path = /OnlineCodeEditingTool
-#静态资源
-spring.mvc.static-path-pattern=/static/**
-
-# 页面默认前缀目录
-spring.mvc.view.prefix=/WEB-INF/jsp/
-# 响应页面默认后缀
-spring.mvc.view.suffix=.jsp
-
-#开发配置
-#spring.datasource.driverClassName = com.mysql.jdbc.Driver
-#spring.datasource.url = jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8
-spring.datasource.driverClassName = oracle.jdbc.OracleDriver
-spring.datasource.url = jdbc:oracle:thin:@127.0.0.1:1521:orcl
-spring.datasource.username = pbms
-spring.datasource.password = pbms
-
-# mybatis接口文件位置
-mybatis.mapper-locations = classpath:mapper/*.xml
-mybatis.type-aliases-package = com.cn.OnlineCodeEditingTool.domain
-
-#log4j2
-logging.config = classpath:log4j2-spring.xml
