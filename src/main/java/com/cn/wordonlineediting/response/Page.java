@@ -1,4 +1,4 @@
-package com.cn.wordonlineediting.pojo;
+package com.cn.wordonlineediting.response;
 
 import java.io.Serializable;
 import java.util.Map;

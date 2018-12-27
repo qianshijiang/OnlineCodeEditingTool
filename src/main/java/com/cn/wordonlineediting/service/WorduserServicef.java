@@ -2,7 +2,7 @@ package com.cn.wordonlineediting.service;
 
 import java.util.List;
 
-import com.cn.wordonlineediting.pojo.Page;
+import com.cn.wordonlineediting.response.Page;
 import com.cn.wordonlineediting.pojo.Worduser;
 
 /**

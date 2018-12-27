@@ -4,7 +4,7 @@ server:
   #servlet:
       #context-path: /OnlineCodeEditingTool
 spring:
-       profiles: dev
+       #profiles: dev
     mvc:
       view:
          prefix: /WEB-INF/jsp/

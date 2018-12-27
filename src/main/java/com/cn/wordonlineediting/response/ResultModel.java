@@ -1,4 +1,4 @@
-package com.cn.wordonlineediting.pojo;/*package com.cn.wordonlineediting.pojo;
+package com.cn.wordonlineediting.response;/*package com.cn.wordonlineediting.pojo;
 
 import com.cn.wordonlineediting.util.ResponseCodeEnum;
 

@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 import com.cn.wordonlineediting.dao.WorduserDao;
-import com.cn.wordonlineediting.pojo.Page;
+import com.cn.wordonlineediting.response.Page;
 import com.cn.wordonlineediting.pojo.Worduser;
 import com.cn.wordonlineediting.service.WorduserServicef;
 /**

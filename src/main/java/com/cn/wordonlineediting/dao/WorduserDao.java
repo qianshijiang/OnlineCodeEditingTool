@@ -4,9 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-import com.cn.wordonlineediting.pojo.Page;
+import com.cn.wordonlineediting.response.Page;
 import com.cn.wordonlineediting.pojo.Worduser;
 
 /**
