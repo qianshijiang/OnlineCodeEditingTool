@@ -13,8 +13,6 @@ import com.cn.wordonlineediting.pojo.Worduser;
  * @date 2017-9-29
  * @describe 文本编辑用户数据访问层接口
  */
-//@Repository(value="worduserDao")
-@Mapper
 public interface WorduserDao {
 	
 	/**
