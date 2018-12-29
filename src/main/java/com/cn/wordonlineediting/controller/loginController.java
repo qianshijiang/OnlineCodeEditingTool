@@ -27,8 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.cn.wordonlineediting.pojo.Worduser;
-import com.cn.wordonlineediting.service.WorduserServicef;
+import com.cn.wordonlineediting.pojo.Worduserf;
 import com.cn.wordonlineediting.util.MD5Util;
 import com.sun.mail.util.MailSSLSocketFactory;
 /**
@@ -67,7 +66,7 @@ public class loginController {
 		  String pwd = request.getParameter("pwd");
 		  String code = request.getParameter("code");
 		  //通过用户名查询,返回Worduser对象,将对象保存在session中,如果对象为null,则给出响应提示
-		  Worduser user = this.userservice.findByName(username);
+		  Worduserf user = this.userservice.findByName(username);
 		  if(user!=null){
 			  if(MD5Util.md5Encode(pwd).equals(user.getPassword())){
 				  HttpSession session = request.getSession();
@@ -119,28 +118,28 @@ public class loginController {
 		  String telephone = request.getParameter("telephone");
 		  String email = request.getParameter("qqemail");
 		  //通过用户名查询数据库,是否已经注册
-		  Worduser user = this.userservice.findByName(loginname);
-		  Worduser worduser = new Worduser();
-		  worduser.setPassword(MD5Util.md5Encode(password));
-		  worduser.setName(loginname);
-		  worduser.setTelephone(telephone);
-		  worduser.setEmail(email);
+		  Worduserf user = this.userservice.findByName(loginname);
+		  Worduserf worduserf = new Worduserf();
+		  worduserf.setPassword(MD5Util.md5Encode(password));
+		  worduserf.setName(loginname);
+		  worduserf.setTelephone(telephone);
+		  worduserf.setEmail(email);
 		  
 		  JSONObject obj = new JSONObject();
 		  if(user!=null){
-			  obj.put("worduser", worduser);
+			  obj.put("worduser", worduserf);
 			  obj.put("message","用户名已被注册");
 		  }else{
-			  worduser.setId(UUID.randomUUID().toString());
-			  worduser.setPassword(MD5Util.md5Encode(password));
-			  worduser.setName(loginname);
-			  worduser.setCreatetime(simple.parse(simple.format(new Date())));
-			  worduser.setStatus("1");
-			  worduser.setTelephone(telephone);
+			  worduserf.setId(UUID.randomUUID().toString());
+			  worduserf.setPassword(MD5Util.md5Encode(password));
+			  worduserf.setName(loginname);
+			  worduserf.setCreatetime(simple.parse(simple.format(new Date())));
+			  worduserf.setStatus("1");
+			  worduserf.setTelephone(telephone);
 			  //worduser.setEmail(email);
-			 int s = this.userservice.insert(worduser);
+			 int s = this.userservice.insert(worduserf);
 			 if(s>0){
-				 obj.put("worduser", worduser);
+				 obj.put("worduser", worduserf);
 			     obj.put("message","注册成功");
 			 }else{
 				 obj.put("message","系统繁忙,请稍后重试");
@@ -169,7 +168,7 @@ public class loginController {
 	  PrintWriter out = response.getWriter();
 	  //获取邮箱地址
 	  String email = request.getParameter("email");
-	  Worduser user = this.userservice.findByName(email);
+	  Worduserf user = this.userservice.findByName(email);
 	  String json = "";
 	  if(user!=null){
 		  Properties prop = new Properties();
@@ -242,7 +241,7 @@ public class loginController {
 		  String userid = request.getParameter("userid");
 		  //获取用户设置的密码
 		  String pwd = request.getParameter("pwdone");
-		  Worduser user = new Worduser();
+		  Worduserf user = new Worduserf();
 		  user.setId(userid);
 		  user.setPassword(MD5Util.md5Encode(pwd));
 		  int s = this.userservice.update(user);

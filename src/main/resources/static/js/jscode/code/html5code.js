@@ -29,7 +29,7 @@ function clear_editor(){ //清空内容
 	editor.setValue("");
 };
 function demo_code(){ //html示例
-	var htmlcode = "//html示例\n" +
+	var htmlcode = "<!--html示例-->\n" +
 			       "<!DOCTYPE html>\n"+
                    "<html>\n"+
 	               "<head>\n"+
@@ -52,6 +52,7 @@ function format_code(){ //格式化代码
 	$.post("beautyhtml.do",{
 		code:editor.getValue(),tabtype:indenttype
 	},function(val){
-		editor.setValue(val);
+    var msg = jQuery.parseJSON(val);
+    editor.setValue(msg['dataSource']);
 	});
 };

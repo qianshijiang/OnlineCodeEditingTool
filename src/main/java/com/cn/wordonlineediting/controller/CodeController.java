@@ -1,5 +1,6 @@
 package com.cn.wordonlineediting.controller;
 
+import com.cn.wordonlineediting.util.FormatUtil;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -55,7 +56,7 @@ public class CodeController {
 			response.setCharacterEncoding("utf-8");
 			PrintWriter out = response.getWriter();
 			JSONObject json = new JSONObject();
-		    json.put("dataSource",BeautyCodeUtil.beautyCode(code, tabtype));
+		    json.put("dataSource", FormatUtil.formJava(code));
 			out.print(json);
 			out.close();
 			return null;
@@ -85,7 +86,13 @@ public class CodeController {
 	@RequestMapping("/beautyhtml.do")
 	public String formathtmlcode(HttpServletRequest request,HttpServletResponse response,String code,Integer tabtype){
 		try{
-			
+			response.setCharacterEncoding("utf-8");
+			PrintWriter out = response.getWriter();
+			JSONObject json = new JSONObject();
+			json.put("dataSource", FormatUtil.formJava(code));
+			out.print(json);
+			out.close();
+			return null;
 		}catch(Exception e){
 			e.printStackTrace();
 		}

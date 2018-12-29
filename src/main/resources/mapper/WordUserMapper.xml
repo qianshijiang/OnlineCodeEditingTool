@@ -1,94 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cn.wordonlineediting.dao.WorduserDao">
+<mapper namespace="com.cn.wordonlineediting.dao.WorduserfDao">
   
    <!-- 通过用户Id查询 -->
-   <select id="findById" resultType="com.cn.wordonlineediting.pojo.Worduser">
-      select t.* from worduser t where t.id = #{Id}
+   <select id="findById" resultType="com.cn.wordonlineediting.pojo.Worduserf">
+      select t.* from worduserf t where t.id = #{Id}
    </select>
    
    <!-- 通过登录名查询(支持邮箱,电话登录) -->
-   <select id="findByName" resultType="com.cn.wordonlineediting.pojo.Worduser">
-      select t.* from worduser t where t.name = #{name} or t.email = #{name} or t.telephone = #{name}
+   <select id="findByName" resultType="com.cn.wordonlineediting.pojo.Worduserf">
+      select t.* from worduserf t where t.name = #{name} or t.email = #{name} or t.telephone = #{name}
    </select>
    
    <!-- 查询所有用户数据 -->
-   <select id="findList" resultType="com.cn.wordonlineediting.pojo.Worduser">
-      select t.* from worduser t where 1=1
-      <if test="id != null and id != ''">
-         and t.id = #{id}
-      </if>
-      <if test="name != null and name != ''">
-         and t.name = #{name}
-      </if>
-      <if test="password != null and password != ''">
-         and t.password = #{password}
-      </if>
-      <if test="createtime != null">
-         and t.createtime = #{createtime}
-      </if>
-      <if test="status != null and status != ''">
-         and t.status = #{status}
-      </if>
-      <if test="telephone != null and telephone != ''">
-         and t.telephone = #{telephone}
-      </if>
-      <if test="email != null and email != ''">
-         and t.email = #{email}
-      </if> 
-      <if test="address != null and address != ''">
-         and t.address = #{address}
-      </if>
-      <if test="describe != null and describe != ''">
-         and t.describe = #{describe}
-      </if>
-      <if test="editcontent != null and editcontent != ''">
-         and t.editcontent = #{editcontent}
-      </if>
+   <select id="findList" resultType="com.cn.wordonlineediting.pojo.Worduserf">
+      select t.* from worduserf t
+      <where>
+        <if test="id != null and id != ''">
+           and t.id = #{id}
+        </if>
+        <if test="name != null and name != ''">
+           and t.name = #{name}
+        </if>
+        <if test="password != null and password != ''">
+           and t.password = #{password}
+        </if>
+        <if test="createtime != null">
+           and t.createtime = #{createtime}
+        </if>
+        <if test="status != null and status != ''">
+           and t.status = #{status}
+        </if>
+        <if test="telephone != null and telephone != ''">
+           and t.telephone = #{telephone}
+        </if>
+        <if test="email != null and email != ''">
+           and t.email = #{email}
+        </if>
+        <if test="address != null and address != ''">
+           and t.address = #{address}
+        </if>
+        <if test="describe != null and describe != ''">
+           and t.describe = #{describe}
+        </if>
+        <if test="editcontent != null and editcontent != ''">
+           and t.editcontent = #{editcontent}
+        </if>
+      </where>
    </select>
    
    <!-- 分页查询用户数据 -->
-   <select id="findListByPage" resultType="com.cn.wordonlineediting.pojo.Worduser">
+   <select id="findListByPage" resultType="com.cn.wordonlineediting.pojo.Worduserf">
        select * from (
 	       select p.*,rownum r from(
-		       select t.* from worduser t where 1=1
-		       <if test="id != null and id != ''">
-		          and t.id = #{id}
-		       </if>
-		       <if test="name != null and name != ''">
-		          and t.name = #{name}
-		       </if>
-		       <if test="password != null and password != ''">
-		          and t.password = #{password}
-		       </if>
-		       <if test="createtime != null">
-		          and t.createtime = #{createtime}
-		       </if>
-		       <if test="status != null and status != ''">
-		          and t.status = #{status}
-		       </if>
-		       <if test="telephone != null and telephone != ''">
-		          and t.telephone = #{telephone}
-		       </if>
-		       <if test="email != null and email != ''">
-		          and t.email = #{email}
-		       </if> 
-		       <if test="address != null and address != ''">
-		          and t.address = #{address}
-		       </if>
-		       <if test="describe != null and describe != ''">
-		          and t.describe = #{describe}
-		       </if>
-		       <if test="editcontent != null and editcontent != ''">
-		          and t.editcontent = #{editcontent}
-		       </if>
+		       select t.* from worduserf t
+           <where>
+             <if test="id != null and id != ''">
+                and t.id = #{id}
+             </if>
+             <if test="name != null and name != ''">
+                and t.name = #{name}
+             </if>
+             <if test="password != null and password != ''">
+                and t.password = #{password}
+             </if>
+             <if test="createtime != null">
+                and t.createtime = #{createtime}
+             </if>
+             <if test="status != null and status != ''">
+                and t.status = #{status}
+             </if>
+             <if test="telephone != null and telephone != ''">
+                and t.telephone = #{telephone}
+             </if>
+             <if test="email != null and email != ''">
+                and t.email = #{email}
+             </if>
+             <if test="address != null and address != ''">
+                and t.address = #{address}
+             </if>
+             <if test="describe != null and describe != ''">
+                and t.describe = #{describe}
+             </if>
+             <if test="editcontent != null and editcontent != ''">
+                and t.editcontent = #{editcontent}
+             </if>
+           </where>
 		       order by t.id
 	         ) p ) where r between #{page.beginNo} and #{page.endNo}
    </select>
    
    <!-- 单条插入数据 -->
-   <insert id="insert" parameterType="com.cn.wordonlineediting.pojo.Worduser">
-       insert into worduser(
+   <insert id="insert" parameterType="com.cn.wordonlineediting.pojo.Worduserf">
+       insert into worduserf(
          ID,
          NAME,
          PASSWORD,
@@ -196,8 +200,8 @@
    </insert>
    
    <!-- 批量插入 -->
-   <insert id="insertBash" parameterType="com.cn.wordonlineediting.pojo.Worduser">
-      insert into worduser(
+   <insert id="insertBash" parameterType="com.cn.wordonlineediting.pojo.Worduserf">
+      insert into worduserf(
          ID,
          NAME,
          PASSWORD,
@@ -307,12 +311,12 @@
    
    <!-- 真实删除 -->
    <delete id="deleteById" parameterType="java.lang.String">
-      delete from worduser t where t.id = #{Id}
+      delete from worduserf t where t.id = #{Id}
    </delete>
    
    <!-- 物理删除 -->
-   <update id="deleteByStatus" parameterType="com.cn.wordonlineediting.pojo.Worduser">
-        update worduser set  
+   <update id="deleteByStatus" parameterType="com.cn.wordonlineediting.pojo.Worduserf">
+        update worduserf set
            <if test="id != null and id != ''">
 	          ID = #{id},
 	       </if>
@@ -347,8 +351,8 @@
    </update>
    
    <!-- 单条修改用户数据 -->
-   <update id="update" parameterType="com.cn.wordonlineediting.pojo.Worduser">
-     update worduser set 
+   <update id="update" parameterType="com.cn.wordonlineediting.pojo.Worduserf">
+     update worduserf set
        <if test="name != null and name != ''">
           NAME = #{name},
        </if>
@@ -385,7 +389,7 @@
    <!-- 批量修改数据 -->
    <update id="updateBash" parameterType="java.util.List">
       <foreach collection="userList" item="item" index="index" open="begin" close="end;">
-         update worduser set 
+         update worduserf set
        <if test="item.name != null and item.name != ''">
           NAME = #{item.name},
        </if>

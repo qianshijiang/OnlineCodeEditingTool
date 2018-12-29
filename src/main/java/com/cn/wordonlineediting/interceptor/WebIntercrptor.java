@@ -1,13 +1,11 @@
 package com.cn.wordonlineediting.interceptor;
 
-import com.cn.wordonlineediting.pojo.Worduser;
+import com.cn.wordonlineediting.pojo.Worduserf;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 拦截器
@@ -18,7 +16,7 @@ public class WebIntercrptor extends HandlerInterceptorAdapter{
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String url = request.getRequestURI();
         //获取session中的数据
-        Worduser user = (Worduser)request.getSession().getAttribute("user");
+        Worduserf user = (Worduserf)request.getSession().getAttribute("user");
         if(user!=null){
             return true;
         }if(url.indexOf("login.do")>0){

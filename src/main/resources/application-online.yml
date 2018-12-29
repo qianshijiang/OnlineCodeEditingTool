@@ -13,7 +13,7 @@ spring:
     resources:
              static-locations: classpath:/META-INF/resources/
     datasource:
-            name: mysql
+            name: oracle
             # 如果存在多个数据源，监控的时候可以通过名字来区分开来
             # 连接数据库的url
             url: jdbc:oracle:thin:@127.0.0.1:1521:orcl
@@ -25,7 +25,7 @@ spring:
             #yn_odr520!
             password: pbms
             #Oracle驱动
-            driver-class-name: oracle.jdbc.OracleDriver
+            driver-class-name: oracle.jdbc.driver.OracleDriver
             #mysql驱动
             #driver-class-name: com.mysql.jdbc.Driver
             # 使用druid数据源

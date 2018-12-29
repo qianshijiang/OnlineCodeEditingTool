@@ -4,12 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.cn.wordonlineediting.dao.WorduserDao;
+import com.cn.wordonlineediting.dao.WorduserfDao;
 import com.cn.wordonlineediting.response.Page;
-import com.cn.wordonlineediting.pojo.Worduser;
+import com.cn.wordonlineediting.pojo.Worduserf;
 import com.cn.wordonlineediting.service.WorduserServicef;
 /**
  * @author qsj
@@ -18,26 +17,26 @@ import com.cn.wordonlineediting.service.WorduserServicef;
  */
 @Service("worduserServicef")
 public class WorduserServiceImpl implements WorduserServicef {
-	@Resource
-	private WorduserDao userdao;
+	@Autowired
+	private WorduserfDao userdao;
 
 	@Override
-	public Worduser findById(String Id) throws Exception {
+	public Worduserf findById(String Id) throws Exception {
 		return this.userdao.findById(Id);
 	}
 
 	@Override
-	public Worduser findByName(String name) throws Exception {
+	public Worduserf findByName(String name) throws Exception {
 		return this.userdao.findByName(name);
 	}
 
 	@Override
-	public List<Worduser> findList(Worduser user) throws Exception {
+	public List<Worduserf> findList(Worduserf user) throws Exception {
 		return this.userdao.findList(user);
 	}
 
 	@Override
-	public Page findListByPage(Integer page, Worduser user) {
+	public Page findListByPage(Integer page, Worduserf user) {
 		if(page == null){
 			page  = 1;
 		}
@@ -49,7 +48,7 @@ public class WorduserServiceImpl implements WorduserServicef {
 		pge.setBeginNo(begin);
 		pge.setEndNo(end);
 		Map<String,Object> map = new HashMap<>();
-		List<Worduser> userLsit = this.userdao.findListByPage(pge, user);
+		List<Worduserf> userLsit = this.userdao.findListByPage(pge, user);
 	    map.put("list",userLsit);
 		pge.setDatasource(map);
 		pge.setRows(userLsit.size());
@@ -62,12 +61,12 @@ public class WorduserServiceImpl implements WorduserServicef {
 	}
 
 	@Override
-	public int insert(Worduser user) throws Exception {
+	public int insert(Worduserf user) throws Exception {
 		return this.userdao.insert(user);
 	}
 
 	@Override
-	public int insertBash(List<Worduser> userList) throws Exception {
+	public int insertBash(List<Worduserf> userList) throws Exception {
 		return this.userdao.insertBash(userList);
 	}
 
@@ -77,17 +76,17 @@ public class WorduserServiceImpl implements WorduserServicef {
 	}
 
 	@Override
-	public int deleteByStatus(Worduser user) throws Exception {
+	public int deleteByStatus(Worduserf user) throws Exception {
 		return this.userdao.deleteByStatus(user);
 	}
 
 	@Override
-	public int update(Worduser user) throws Exception {
+	public int update(Worduserf user) throws Exception {
 		return this.userdao.update(user);
 	}
 
 	@Override
-	public int updateBash(List<Worduser> userList) throws Exception {
+	public int updateBash(List<Worduserf> userList) throws Exception {
 		return this.userdao.updateBash(userList);
 	}
 	

@@ -29,7 +29,7 @@ function clear_editor(){ //清空内容
 	editor.setValue("");
 };
 function demo_code(){ //java示例
-	var javacode = "//java快速排序\n" +
+	var javacode = "/**java快速排序**/\n" +
 			       "public static void quickSort(int[] numbers, int start, int end) {\n" +  
                    "if (start < end) {\n"+  
                    "int base = numbers[start]; // 选定的基准值（第一个数值作为基准值\n" +

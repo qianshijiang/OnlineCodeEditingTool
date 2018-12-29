@@ -15,7 +15,7 @@
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection
-                driverClass="com.mysql.jdbc.Driver"
+                driverClass="oracle.jdbc.driver.OracleDriver"
                 connectionURL="${url}"
                 userId="${userId}"
                 password="${password}">

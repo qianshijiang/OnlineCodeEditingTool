@@ -3,7 +3,7 @@ package com.cn.wordonlineediting.service;
 import java.util.List;
 
 import com.cn.wordonlineediting.response.Page;
-import com.cn.wordonlineediting.pojo.Worduser;
+import com.cn.wordonlineediting.pojo.Worduserf;
 
 /**
  * @author qsj
@@ -17,7 +17,7 @@ public interface WorduserServicef {
 	 * @param Id 用户Id
 	 * @throws Exception
 	 */
-	 Worduser findById(String Id) throws Exception;
+	 Worduserf findById(String Id) throws Exception;
 	
 	/**
 	 * 通过名称查询,用户名、电话、邮箱
@@ -25,13 +25,13 @@ public interface WorduserServicef {
 	 * @return
 	 * @throws Exception
 	 */
-	 Worduser findByName(String name) throws Exception;
+	 Worduserf findByName(String name) throws Exception;
 	
 	/**
 	 * 查询所有数据
 	 * @return 用户集合实体
 	 */
-     List<Worduser> findList(Worduser user) throws Exception;
+     List<Worduserf> findList(Worduserf user) throws Exception;
     
     /**
      * 分页查询用户数据
@@ -39,14 +39,14 @@ public interface WorduserServicef {
      * @param user 用户实体
      * @return
      */
-     Page findListByPage(Integer page, Worduser user);
+     Page findListByPage(Integer page, Worduserf user);
     
     /**
      * 单条插入数据
      * @return 插入的数据条数
      * @throws Exception
      */
-     int insert(Worduser user) throws Exception;
+     int insert(Worduserf user) throws Exception;
     
     /**
      * 多条插入数据
@@ -54,7 +54,7 @@ public interface WorduserServicef {
      * @return 插入数据条数
      * @throws Exception
      */
-     int insertBash(List<Worduser> userList) throws Exception;
+     int insertBash(List<Worduserf> userList) throws Exception;
     
     /**
      * 真实删除 通过用户Id
@@ -70,7 +70,7 @@ public interface WorduserServicef {
      * @return
      * @throws Exception
      */
-     int deleteByStatus(Worduser user) throws Exception;
+     int deleteByStatus(Worduserf user) throws Exception;
     
     /**
      * 单条修改用户数据
@@ -78,7 +78,7 @@ public interface WorduserServicef {
      * @return
      * @throws Exception
      */
-     int update(Worduser user) throws Exception;
+     int update(Worduserf user) throws Exception;
     
     /**
      * 批量修改用户数据
@@ -86,5 +86,5 @@ public interface WorduserServicef {
      * @return
      * @throws Exception
      */
-     int updateBash(List<Worduser> userList) throws Exception;
+     int updateBash(List<Worduserf> userList) throws Exception;
 }

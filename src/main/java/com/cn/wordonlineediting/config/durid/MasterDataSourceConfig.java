@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * 默认的数据源配置类
  * Created by QSJ on 2018/12/14.
  */
-@Configuration
+/*@Configuration
 @MapperScan(basePackages = MasterDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "masterSqlSessionFactory")
 @PropertySource("classpath:application-dev.yml")//制定读取配置文件的路径
 @ConfigurationProperties(prefix = "spring.datasource")
@@ -33,7 +33,7 @@ public class MasterDataSourceConfig {
 
     static final String PACKAGE = "com.cn.wordonlineediting.dao";
 
-    static final String MAPPER_LOCATION = "classpath:mapper/*.xml";
+    static final String MAPPER_LOCATION = "classpath:mapper*//*.xml";
 
     private static final Logger log = LoggerFactory.getLogger(MasterDataSourceConfig.class);
 
@@ -311,4 +311,4 @@ public class MasterDataSourceConfig {
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
-}
+}*/
